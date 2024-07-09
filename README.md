@@ -32,7 +32,7 @@ Odiyan-AC is licensed under the terms of the odiyan AntiCheat License. See the L
 
 Contact
 
-For support, bug reports, and feature requests, please contact 0diyan at odiyanroleplay@gmail.com.
+For support, bug reports, and feature requests, please contact 0diyan at nexalroleplay@gmail.com.
 
 
 # odiyan AntiCheat (Odiyan-AC) Features
