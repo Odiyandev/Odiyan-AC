@@ -1,6 +1,6 @@
 # [Odiyan-AC - Anticheat system]
 
-Nexal AntiCheat (Odiyan-AC) SA-MP Include
+odiyan AntiCheat (Odiyan-AC) SA-MP Include
 
 Developed by 0diyan
 
@@ -23,19 +23,19 @@ Installation
 
 Usage
 
-Call the NexalAC_Init() function to initialize the anti-cheat system.
-Use the NexalAC_CheckPlayer() function to check players for cheating.
+Call the odiyanAC_Init() function to initialize the anti-cheat system.
+Use the odiyanAC_CheckPlayer() function to check players for cheating.
 
 License
 
-Odiyan-AC is licensed under the terms of the Nexal AntiCheat License. See the LICENSE file for details.
+Odiyan-AC is licensed under the terms of the odiyan AntiCheat License. See the LICENSE file for details.
 
 Contact
 
-For support, bug reports, and feature requests, please contact 0diyan at nexalroleplay@gmail.com.
+For support, bug reports, and feature requests, please contact 0diyan at odiyanroleplay@gmail.com.
 
 
-# Nexal AntiCheat (Odiyan-AC) Features
+# odiyan AntiCheat (Odiyan-AC) Features
 
 Movement Cheats
 
