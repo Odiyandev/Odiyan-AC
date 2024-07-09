@@ -1,9 +1,9 @@
 //odiyan-ac by Odiyan v1
 
-#if defined _nexal_ac_included
+#if defined _odiyan_ac_included
 	#endinput
 #endif
-#define _nexal_ac_included
+#define _odiyan_ac_included
 
 #tryinclude <a_samp>
 
@@ -22,7 +22,7 @@
 	#pragma unused SUSPICION_2
 #endif
 
-#define	nexal_AC_VERSION				"v1"
+#define	odiyan_AC_VERSION				"v1"
 
 #define AC_SERVER_VERSION			"0.3.7"
 #define AC_SERVER_DL_VERSION		"0.3.DL"
@@ -3456,8 +3456,9 @@ public OnGameModeInit()
 	print(" ");
 	print("--------------------------------------");
 	print(LOADED_MSG_1);
-	printf(LOADED_MSG_2, nexal_AC_VERSION);
-	print(LOADED_MSG_3);
+	printf(LOADED_MSG_2, ODIYAN_AC_VERSION);
+	print(LOADED_MSG_3, NJN HAPPY AN MWONE NI ETH USE AKIYALO);
+	print(LOADED_MSG_4);
 	print("--------------------------------------\n");
 	#if defined ac_OnGameModeInit
 		new ac_a = ac_OnGameModeInit();
