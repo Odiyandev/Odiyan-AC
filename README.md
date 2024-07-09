@@ -16,7 +16,7 @@ Features
 
 Installation
 
-1. Download the Odiyan-AC SA-MP include from the official website.
+1. Download the Odiyan-AC SA-MP include from Github.com
 2. Extract the contents of the zip file to your SA-MP script directory.
 3. Include the Odiyan-AC.inc file in your script using the #include directive.
 4. The settings is located in a separate file (scriptfiles\nex-ac_settings.cfg)
