@@ -2502,6 +2502,7 @@ stock acc_SpawnPlayer(playerid)
 #endif
 #define SpawnPlayer acc_SpawnPlayer
 
+
 stock orig_SetPlayerHealth(playerid, Float:health) return SetPlayerHealth(playerid, health);
 
 stock acc_SetPlayerHealth(playerid, Float:health)

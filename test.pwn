@@ -71,7 +71,7 @@ antikick(playerid, code)
 {
 	SMA(COLOR_LIGHTRED, ""GREEN"AdmCmd: %s"WHITE" was autokicked by ODIYAN-AC ANTICHEAT, Reason: %s", GetRPName(playerid), AC_CODE_NAME[code]);
     return 1;
-}
+} 
 
 
 
